@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout | The Growth Loop</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%232f35e8'/%3E%3Cpath d='M22.5 11.5A7.5 7.5 0 1 0 23.5 17' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main class="co">
+  <div class="wrap">
+    <div class="co-head">
+      <a class="co-back" href="index.html" aria-label="Back to the website"><span class="ic" data-i="back"></span></a>
+      <div><h1>Checkout</h1><p>Review your course and details before paying.</p></div>
+    </div>
+
+    <div class="demo dbanner" id="demoBanner" hidden><span class="ic" data-i="info"></span><span>Demo amounts. Edit the prices and connect a payment gateway in <b>js/config.js</b> before going live.</span></div>
+
+    <div class="co-grid">
+      <div>
+        <section class="co-card prod" aria-label="Selected course">
+          <div class="thumb" aria-hidden="true"><b id="thumbA">UI/UX</b><em>course</em></div>
+          <div>
+            <h2 id="pTitle"></h2>
+            <p id="pBy"></p>
+            <label for="pickCourse">Course</label>
+            <select id="pickCourse"></select>
+          </div>
+        </section>
+
+        <div class="acct" id="acct" hidden>
+          <span class="icon"><span class="ic" data-i="user"></span></span>
+          <div><b>Already have an account?</b><small>Sign in for faster checkout, or continue as a guest with your contact details.</small></div>
+          <a href="#" id="signin">Sign in</a>
+        </div>
+
+        <section class="co-card" aria-labelledby="h-opt">
+          <h3 id="h-opt">Payment option</h3>
+          <div class="opt">
+            <div class="r"><span class="dot" aria-hidden="true"></span><b>Pay in full</b><span class="amt" id="optAmt"></span></div>
+            <p id="optNote"></p>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <section class="co-card" aria-labelledby="sumBtn">
+          <button class="sum-h" id="sumBtn" type="button" aria-expanded="true" aria-controls="sumBody"><span>Payment Summary</span><span class="ic" data-i="chev"></span></button>
+          <div id="sumBody">
+            <div class="rows">
+              <div><span>Original Price</span><b id="rOrig"></b></div>
+              <div><span>Package Discount</span><b id="rDisc"></b></div>
+              <div id="rCpRow" hidden><span>Coupon Discount</span><b id="rCp"></b></div>
+              <div><span>Additional Fees</span><b id="rFees"></b></div>
+              <div><span>Final Amount</span><b id="rFinal"></b></div>
+            </div>
+
+            <form id="coForm" novalidate>
+              <fieldset class="contact" style="border:1px solid var(--line);margin-inline:0">
+                <legend style="padding:0 6px;font-weight:600;color:var(--ink);font-size:1rem">Contact details</legend>
+                <div class="row">
+                  <div class="f"><label class="sr" for="c-first">First name</label><input id="c-first" name="first" type="text" autocomplete="given-name" placeholder="First name" required></div>
+                  <div class="f"><label class="sr" for="c-last">Last name</label><input id="c-last" name="last" type="text" autocomplete="family-name" placeholder="Last name" required></div>
+                </div>
+                <div class="f"><label class="sr" for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" placeholder="Email" required></div>
+                <div class="f"><label class="sr" for="c-phone">Phone number</label><input id="c-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number" required></div>
+                <div class="f last"><label class="sr" for="c-state">State</label><select id="c-state" name="state" required></select></div>
+              </fieldset>
+
+              <div class="total"><span>Total</span><b id="rTotal"></b></div>
+
+              <div class="coupon">
+                <h4>Have a coupon?</h4>
+                <div class="cp-row">
+                  <div class="box"><span class="ic" data-i="tag"></span><label class="sr" for="cpCode">Coupon code</label><input id="cpCode" type="text" placeholder="ENTER CODE" autocomplete="off"></div>
+                  <button class="btn btn-p" type="button" id="cpApply">Apply</button>
+                </div>
+                <p class="cp-msg" id="cpMsg" role="status" aria-live="polite"></p>
+              </div>
+
+              <button class="btn btn-p pay-btn" type="submit" id="payBtn">Proceed to payment <span class="ic" data-i="arrow"></span></button>
+              <div class="status" id="payStatus" role="status" aria-live="polite"></div>
+            </form>
+            <div class="secure"><b><span class="ic" data-i="lock"></span> <span id="secureTxt">Payment</span></b><span id="secureSub"></span></div>
+          </div>
+        </section>
+
+        <section class="co-card paid" id="paid" aria-live="polite">
+          <div class="okmark"><span class="ic" data-i="check"></span></div>
+          <h3>Payment received</h3>
+          <p id="paidTxt">Thank you. We will confirm your enrolment shortly.</p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</main>
+<script src="js/config.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>
