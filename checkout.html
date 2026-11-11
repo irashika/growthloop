@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment | TheGrowthLoop AI Masterclass</title>
+<meta name="robots" content="noindex,follow">
+<meta name="description" content="Pay by UPI QR to register for the TheGrowthLoop AI Masterclass.">
+<link rel="canonical" href="https://thegrowthloop.live/">
+<meta name="theme-color" content="#3F69EE">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&family=Noto+Sans+Tamil:wght@500;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="co">
+<header class="top cohd">
+  <div class="wrap bar">
+    <a class="logo" href="index.html" aria-label="TheGrowthLoop home"><img src="assets/logo.webp" alt="TheGrowthLoop" width="600" height="71"></a>
+    <a class="back" href="index.html#pricing">&larr; Back to pricing</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="closedbar" id="closedBar" hidden style="background:#FEF3F2;color:#B42318;font-weight:600;padding:12px 16px;border-radius:12px;margin-bottom:14px">Registrations are closed. Please message us on WhatsApp to join the waitlist.</p>
+  <h1>Register for the AI Masterclass</h1>
+  <p>Enter your details, pay with the QR code, then confirm your payment.</p>
+
+  <div class="cogrid">
+    <form class="panel" id="payForm" novalidate>
+      <h2>1. Your details</h2>
+      <div style="display:grid;gap:16px">
+        <div><label for="n">Full name</label><input id="n" name="name" autocomplete="name" maxlength="60" required aria-required="true"><p class="err" id="n-err" role="alert"></p></div>
+        <div><label for="p">WhatsApp number</label><input id="p" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="e.g. 98765 43210" required aria-required="true"><p class="err" id="p-err" role="alert"></p></div>
+        <div><label for="e">Email <span>(optional)</span></label><input id="e" name="email" type="email" autocomplete="email" maxlength="100" placeholder="you@example.com"><p class="err" id="e-err" role="alert"></p></div>
+      </div>
+
+      <h2 style="margin-top:28px">2. Order summary</h2>
+      <div class="sum"><span id="prod">AI Masterclass (next cohort)</span><span id="amtReg"></span></div>
+      <div class="sum promo-row" id="discRow" hidden><span>Promo <b id="codeName"></b></span><span class="green" id="amtDisc"></span></div>
+      <div class="sum t"><span>Total</span><span id="amt2"></span></div>
+
+      <div class="promo">
+        <label for="promo">Promo code</label>
+        <div class="promo-in">
+          <input id="promo" name="promo" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20" placeholder="Enter code">
+          <button type="button" class="btn btn-o" id="promoBtn">Apply</button>
+        </div>
+        <p class="err" id="promo-err" role="alert"></p>
+        <p class="okmsg" id="promoOk" role="status" hidden></p>
+      </div>
+
+      <h2 style="margin-top:28px">3. After you pay</h2>
+      <div><label for="u">UPI transaction ID (UTR)</label><input id="u" name="utr" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="12-digit number from your UPI app" required aria-required="true"><p class="err" id="u-err" role="alert"></p><p class="hint">You will find it under payment details in your UPI app.</p></div>
+      <div class="chk"><label><input type="checkbox" id="chk"> <span>I have paid <b id="chkAmt"></b> to TheGrowthLoop using the QR code.</span></label><p class="err" id="chk-err" role="alert"></p></div>
+      <button class="btn btn-p" type="submit" style="width:100%;margin-top:20px">I have paid</button>
+    </form>
+
+    <aside class="panel qrbox" aria-label="Pay using QR code">
+      <h2>Scan and pay</h2>
+      <img id="qr" src="assets/upi-qr.png" alt="UPI QR code to pay TheGrowthLoop" width="230" height="230">
+      <div class="am" id="amt3"></div>
+      <p class="upi" id="upiLine" hidden>UPI ID: <b id="upi"></b></p>
+      <p class="sample" id="sampleNote" hidden>Sample QR for preview only. Do not pay. The real QR will replace it.</p>
+      <ol class="how">
+        <li>Open any UPI app (GPay, PhonePe, Paytm, BHIM).</li>
+        <li>Scan this QR and pay the exact amount.</li>
+        <li>Copy the transaction ID, fill it in, and press <b>I have paid</b>.</li>
+      </ol>
+    </aside>
+  </div>
+</main>
+
+<!-- Payment submitted popup: shows the receipt picture -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="dlg rdlg">
+    <button class="rclose" type="button" id="rclose" aria-label="Close receipt">&times;</button>
+    <h2 id="mt" tabindex="-1" class="sr">Payment submitted</h2>
+    <img id="rimg" class="rimg" alt="Payment receipt" width="720" height="1000">
+    <div class="sr" id="rtext"></div>
+    <div class="ract">
+      <button class="btn btn-p" type="button" id="shareBtn">Share receipt on WhatsApp</button>
+      <button class="btn btn-o" type="button" id="pdfBtn">Download PDF</button>
+      <button class="btn btn-o" type="button" id="pngBtn">Save as image</button>
+    </div>
+    <p class="nt" id="shareNote" role="status"></p>
+    <p class="nt">Your seat is confirmed after TheGrowthLoop checks the payment. We will reply on WhatsApp.</p>
+    <a href="index.html" style="display:inline-block;margin-top:8px;font-weight:600">Back to home</a>
+  </div>
+</div>
+
+<a class="fab" href="#" data-wa="general" aria-label="Chat with TheGrowthLoop on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16.04 3C9.4 3 4 8.4 4 15.04c0 2.12.55 4.19 1.6 6.01L4 29l8.1-1.57a12 12 0 0 0 3.94.66C22.68 28.1 28 22.7 28 16.06 28 9.4 22.7 3 16.04 3zm0 22.1c-1.2 0-2.37-.32-3.4-.93l-.5-.3-4.8.93.97-4.67-.32-.5a10 10 0 0 1-1.55-5.4c0-5.5 4.5-10 10.05-10 5.5 0 9.95 4.5 9.95 10s-4.47 10.87-9.97 10.87zm5.5-7.5c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.63-.93-2.23-.24-.58-.5-.5-.68-.5h-.58c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.08 4.48.7.3 1.26.48 1.7.62.72.23 1.37.2 1.88.12.58-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.12-.28-.2-.58-.35z"/></svg></a>
+
+<script src="js/config.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/receipt.js"></script>
+<script src="js/checkout.js"></script>
+<script src="js/track.js"></script>
+</body>
+</html>
