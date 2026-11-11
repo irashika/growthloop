@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /checkout.html
-Sitemap: https://thegrowthloop.live/sitemap.xml
